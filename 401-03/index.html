@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+         i {
+        margin-top:200px ;
+        justify-content: space-around;
+
+    }
+    
+    </style>
+</head>
+<body>
+    <div class="img-slider" style="display: flex;" >
+        <i class="fa-solid fa-left-long" onclick="prev()"></i>
+        <img src="images/111.webp" height="400px" width="700px" id = banner>
+        <i class="fa-solid fa-right-long" onclick="next()"></i>
+    </div>
+    <script>
+        var imgser = []
+        imgser[0]="images/111.webp"
+        imgser[1]="images/333.webp"
+        imgser[2]="images/444.webp"
+
+        i = 0;
+        let imag = document.getElementById("banner")
+
+        function prev(){
+            if(i<imgser.length-1){
+                i++;
+            }
+            else{
+                i=0;
+            }
+            imag.src=imgser[i];
+        }
+        function next(){
+                i--;
+                if(i==-1)
+                i=2;
+                imag.src = imgser[i]
+
+        }
+
+
+
+    </script>
+</body>
+</html>

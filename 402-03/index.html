@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .subpart{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <h1>My Shopping list</h1>
+            <div class="subpart">
+            <label for="fname">Enter a new item:</label>
+            <input type="text" id="fname">
+            &nbsp;<button onclick="hello()">Add item</button>
+        </div>
+        </div>
+    </div>
+    <script>
+        function hello(){
+            var temp = document.getElementById("fname").value
+            console.log(temp);
+            var temp2 = document.createElement("li")
+            temp2.innerHTML=temp
+            var temp3=document.createElement("button")
+            temp3.innerHTML="Delete"
+            document.body.appendChild(temp2)
+            
+        }
+    </script>
+</body>
+</html>

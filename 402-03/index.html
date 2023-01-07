@@ -7,6 +7,7 @@
     <style>
         .subpart{
             display: flex;
+        
         }
     </style>
 </head>
@@ -29,7 +30,16 @@
             temp2.innerHTML=temp
             var temp3=document.createElement("button")
             temp3.innerHTML="Delete"
-            document.body.appendChild(temp2)
+            var perma = document.createElement("div")
+            perma.appendChild(temp2)
+            perma.appendChild(temp3)
+            document.body.appendChild(perma)
+            perma.setAttribute('style','display:flex;margin-top:20px;')
+            temp3.setAttribute('style','margin-left:20px;')
+            temp3.addEventListener("click",(e)=>{
+                e.path[1].remove()
+            })
+
             
         }
     </script>

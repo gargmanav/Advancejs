@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       body{
+        background-color: #283149;
+       }
+        .mainheading{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .drumhead{
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 200px;
+        }
+        .drums{
+            justify-content: space-evenly;
+            width: 150px;
+            height: 150px;
+          font-size: 80px;
+          color: #D1216F;
+          border: 0;
+          border-radius: 3px;
+          font-weight: 800;
+          font-family: cursive;
+          text-shadow: 2px 2px #ffff;
+          outline-style:  solid ;
+          outline-color: #8D8A89 ;
+          outline-width: 6px;
+        }
+        .mainheading h1{
+        font-size: 80px;
+        font-family:monospace;
+        text-shadow: 2px 2px #D1216F;
+        color: #DBEDF3;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="mainheading">
+            <h1>Drum 🥁 Kit</h1>
+        </div>
+        <div class="drumhead">
+            <button  class="drums w" style="background-image: url('images/crash.png')">W</button>
+            <button  class="drums a" style="background-image: url('images/kick.png')">A</button>
+            <button  class="drums s" style="background-image: url('images/snare.png')">S</button>
+            <button  class="drums d" style="background-image: url('images/tom1.png')">D</button>
+            <button  class="drums j" style="background-image: url('images/tom2.png')">J</button>
+            <button  class="drums k" style="background-image: url('images/tom3.png')">K</button>
+            <button  class="drums l" style="background-image: url('images/tom4.png')">L</button>
+        </div>
+    </div>
+    <script>
+        const checkbeat=(key)=>{
+        var letter = key.target.innerHTML
+        console.log(letter) 
+        switch (letter) {
+            case "W":
+                var audio = new Audio("sounds/buzz.mp3");
+                audio.play();
+                break;
+                case "A":
+                var audio = new Audio("sounds/buzzer.mp3");
+                audio.play();
+                break;
+                case "S":
+                var audio = new Audio("sounds/crash.mp3");
+                audio.play();
+                break;
+                case "D":
+                var audio = new Audio("sounds/crock.mp3");
+                audio.play();
+                break;
+                case "J":
+                var audio = new Audio("sounds/kick-bass.mp3");
+                audio.play();
+                break;
+                case "K":
+                var audio = new Audio("sounds/pin.mp3");
+                audio.play();
+                break;
+                case "L":
+                var audio = new Audio("sounds/snare.mp3");
+                audio.play();
+                break;
+        
+            default:
+                break;
+        }
+        
+       }
+        var beats = document.querySelectorAll(".drums")
+        for(let i = 0;i<beats.length;i++){
+            beats[i].addEventListener("click",checkbeat)
+        }
+       
+
+    </script>
+</body>
+</html>

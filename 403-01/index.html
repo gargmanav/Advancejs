@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        margin-top: 120px;
+        }
+        .subheading{
+
+            width: 500px;
+            height: 300px;
+            display:flex ;
+           
+           flex-direction: column;
+           justify-content: center;
+           align-items: center;
+           
+ 
+        }
+        #heading{
+            text-align: center;
+            width: 500px;
+            height: 100px;
+            box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12)
+        }
+        #heading2{
+            display: flex;
+           justify-content: center;
+           align-items: center;
+            width: 200px;
+            height: 250px;
+            box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12);
+  font-size: 80px;
+  text-shadow:2px 2px black ;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="subheading">
+            
+            <h1 id="heading">Press Any Keyborad Key</h1>
+            <h1 id="heading2"></h1>
+        </div>
+    </div>
+    <script>
+          document.addEventListener("keypress",(e)=>{
+            var nameing = e.key
+            var charname = e.charCode
+            var heading = document.getElementById("heading")
+            var heading2=document.getElementById("heading2")
+            heading.innerHTML=`You pressed ${nameing}`
+            heading2.innerHTML=charname
+            heading2.style.color = "green";
+
+            
+          })
+    </script>
+</body>
+</html>

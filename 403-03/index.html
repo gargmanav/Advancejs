@@ -8,6 +8,11 @@
         body{
             background-image: url("images/fruits.jpg");
         }
+        .main{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         .container{
             display: flex;
             justify-content: center;
@@ -56,13 +61,12 @@
             font-weight: 600;
             font-style: normal;
         }
-        .funl{
-    
-        }
-        h1{
+        h2{
             color: brown;
         }
-
+        #return{
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -72,7 +76,7 @@
                 <h1 id="mainheading">Charles' Tip <br>Calculator</h1>
                 <hr id="hraa">
                 <p class="totalheading">How much was your bill ?</p>
-                <label>$<input id="inputtotal" type="text"></label>
+                <label>$ &nbsp; <input id="inputtotal" type="text"></label>
                 <div class="service">
                     <p>How was Your Service ?</p>
                     <select id="percentvalue">
@@ -85,41 +89,26 @@
                 </div>
                 <div class="sharingperson">
                     <p>Total No of person sharing the Bill?</p>
-                    <input type="text" id="Noofperson" class="funl" > <p class="funl">people</p>
+                    <input type="text" id="Noofperson" >
                 </div>
                 <br>
                 <div class="buttontag">
                     <button class="calculate" onclick="Calcall()">Calculate!</button>
                 </div>
-                <div id="khatam">
-
-                </div>
+              <h2 id="return" ></h2>
             </div>
          </div>
     </div>
     <script>
         function Calcall() {
             let billamount = document.getElementById("inputtotal").value
-            console.log(billamount);
             let totalpercent = document.getElementById("percentvalue").value
-            console.log(totalpercent);
             let numberperson=document.getElementById("Noofperson").value
-            console.log(numberperson);
-            let Khatam = document.getElementById("Khatam");
             let rem = billamount/numberperson;
-            console.log(rem);
             let ans = rem*(totalpercent/100);
-            console.log(ans);
-            let temp = document.createElement("div");
-            let temp2 = document.createElement("p");
-            temp2.innerHTML = `Tip amount<br><h1> ${ans}</h1>each`;
-            temp2.setAttribute("style","color:brown")
-            temp.appendChild(temp2);
-            Khatam.innerHTML =document.body.appendChild(temp);
-
-
+            let Return = document.getElementById("return");
+            Return.innerHTML=`Total amount <br>$ ${ans} <br> each`;
         }
-       
     </script>
 </body>
 </html>

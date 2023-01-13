@@ -1,0 +1,125 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-image: url("images/fruits.jpg");
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+        }
+        .box{
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            width: 350px;
+            height: 600px;
+            padding-left: 20px;
+            color: brown;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        #hraa{
+            color: black;
+            width: 320px;
+            margin-left: 4px;
+        }
+        #mainheading{
+            text-align: center;
+        }
+        button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 330px;
+            height: 50px;
+            background-color: brown;
+            color: white;
+            border: 0;
+            font-size: large;
+            font-weight: 600;
+            padding-left: 0
+
+        }
+        input{
+            width: 150px;
+            height:30px;
+        }
+        p{
+            font-size: 16px;
+            font-weight: 600;
+            font-style: normal;
+        }
+        .funl{
+    
+        }
+        h1{
+            color: brown;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main">
+         <div class="container">
+            <div class="box">
+                <h1 id="mainheading">Charles' Tip <br>Calculator</h1>
+                <hr id="hraa">
+                <p class="totalheading">How much was your bill ?</p>
+                <label>$<input id="inputtotal" type="text"></label>
+                <div class="service">
+                    <p>How was Your Service ?</p>
+                    <select id="percentvalue">
+                        <option value="30" class="percent" >30%-Outstanding</option>
+                        <option value="20" class="percent" >20%-Good</option>
+                        <option value="15" class="percent" >15%-It was ok</option>
+                        <option value="10" class="percent" >10%-Bad</option>
+                        <option value="5" class="percent">5%-terrible</option>
+                    </select>
+                </div>
+                <div class="sharingperson">
+                    <p>Total No of person sharing the Bill?</p>
+                    <input type="text" id="Noofperson" class="funl" > <p class="funl">people</p>
+                </div>
+                <br>
+                <div class="buttontag">
+                    <button class="calculate" onclick="Calcall()">Calculate!</button>
+                </div>
+                <div id="khatam">
+
+                </div>
+            </div>
+         </div>
+    </div>
+    <script>
+        function Calcall() {
+            let billamount = document.getElementById("inputtotal").value
+            console.log(billamount);
+            let totalpercent = document.getElementById("percentvalue").value
+            console.log(totalpercent);
+            let numberperson=document.getElementById("Noofperson").value
+            console.log(numberperson);
+            let Khatam = document.getElementById("Khatam");
+            let rem = billamount/numberperson;
+            console.log(rem);
+            let ans = rem*(totalpercent/100);
+            console.log(ans);
+            let temp = document.createElement("div");
+            let temp2 = document.createElement("p");
+            temp2.innerHTML = `Tip amount<br><h1> ${ans}</h1>each`;
+            temp2.setAttribute("style","color:brown")
+            temp.appendChild(temp2);
+            Khatam.innerHTML =document.body.appendChild(temp);
+
+
+        }
+       
+    </script>
+</body>
+</html>

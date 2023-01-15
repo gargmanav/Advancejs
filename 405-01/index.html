@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="data.js"></script>
+    <script defer src="index.js"></script>
+    
+    <style>
+        .main{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .maincontainer{
+            background-color: #EFF0F1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="maincontainer">
+            <h1>World Countries Data</h1>
+            <h3 id="countrieslen" style="color: black;"></h3>
+        </div>
+        <div class="subcontainer">
+            <button id="population"onclick="allpopulation()">POPULATION</button>
+            <button id="language" onclick="alllanguage()">LANGUAGES</button>
+            <h4 id="most">10 most populated Countries in the World</h4> 
+        </div>
+        <div class="lastcontainer">
+        <div id="tables">
+        </div>
+        </div>
+    </div>
+</body>
+</html>

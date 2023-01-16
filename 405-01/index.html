@@ -4,36 +4,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <script defer src="data.js"></script>
     <script defer src="index.js"></script>
     
     <style>
-        .main{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        body{
+            font-family: 'Poppins', sans-serif;
         }
-        .maincontainer{
-            background-color: #EFF0F1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+      .maincontainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .subcontainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #most{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      button{
+        margin: 10px;
+        width: 120px;
+        height: 30px;
+        background-color: orange;
+        border: none;
+        border-radius: 5px;
+      }
     </style>
 </head>
 <body>
     <div class="main">
         <div class="maincontainer">
-            <h1>World Countries Data</h1>
+            <h1 style="color: orange;">World Countries Data</h1>
             <h3 id="countrieslen" style="color: black;"></h3>
         </div>
         <div class="subcontainer">
             <button id="population"onclick="allpopulation()">POPULATION</button>
             <button id="language" onclick="alllanguage()">LANGUAGES</button>
-            <h4 id="most">10 most populated Countries in the World</h4> 
-        </div>
+             </div>
+             <h4 id="most">10 most populated Countries in the World</h4>
         <div class="lastcontainer">
         <div id="tables">
         </div>

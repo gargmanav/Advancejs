@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="data.js"></script>
+    <style>
+        #tabledata{
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>Emoji app</h1>
+        <input type="text" id="input" onkeyup="searchbefore()">
+        <button onclick="searchonclick()">Search</button>
+    </div>
+    <div class="container">
+        <table id="tabledata"></table>
+    </div>
+    <script>
+
+        function searchbefore(){
+            const table = document.getElementById("tabledata")
+            table.innerHTML=""
+            const input=document.getElementById("input").value
+        const newtags = []
+        emojiList.map((ele)=>{
+            if(ele.tags.includes(input)){
+                newtags.push(ele)
+                table.innerHTML +=`
+                <tr class="tablerow">
+                    <td id="emojiicon">${ele.emoji}</td>
+                    <td id="emojialias">${ele.aliases}</td>
+                    <td id="emojiidescription">${ele.description}</td>
+                </tr>
+                `
+            }
+        })
+        }
+        
+    </script>
+</body>
+</html>

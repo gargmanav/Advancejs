@@ -1,0 +1,122 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body{
+            font-family: 'Poppins', sans-serif;
+            background-image: url(images/galaxy.gif);
+        }
+        .subcontainer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        .valuecontainer{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        h1{
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .answerbody{
+            margin: 50px;
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+        #kilos{
+            height: 30px;
+            width: 150px;
+        }
+        #galaxyplanets{
+            height: 30px;
+            width: 150px;
+        }
+        #calculate{
+            height: 30px;
+            width: 150px;
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="subcontainer">
+            <h1>Calculate the weight of an Object on a Planet</h1>
+        </div>
+        <div class="valuecontainer">
+            <input type="text" id="kilos" placeholder="Enter Mass" style="font-family: 'Poppins', sans-serif;">
+            <select id="galaxyplanets"></select>
+            <button id="calculate" onclick="calculatefunc()">Calculate Weight</button>
+        </div>
+        <div class="answerbody">
+        <img id="image" src="" alt="">
+        <h1 id="h1"></h1>
+        </div>
+    </div>
+    <script>
+        const planets = [
+        { planetName: "Sun", gravity: 27.9, image: "https://spaceplace.nasa.gov/gallery-sun/en/solar-flare.en.jpg" },
+        { planetName: "Moon", gravity: 0.1655, image: "images/moon.png" },
+        { planetName: "Mercury", gravity: 0.377, image: "images/mercury.png" },
+        { planetName: "Venus", gravity: 0.9032, image: "images/venus.png" },
+        { planetName: "Earth", gravity: 1, image: "images/earth.png" },
+        { planetName: "Mars", gravity: 0.3895, image: "images/mars.png" },
+        { planetName: "Jupiter", gravity: 2.640, image: "images/jupiter.png" },
+        { planetName: "Saturn", gravity: 1.139, image: "images/saturn.png" },
+        { planetName: "Uranus", gravity: 0.917, image: "images/uranus.png" },
+        { planetName: "Neptune", gravity: 1.148, image: "images/neptune.png" },
+    ]
+       
+    planets.map((ele) => {
+        var options = document.createElement("option")
+        options.innerHTML = ele.planetName;
+        options.value=ele.gravity
+        options.setAttribute("imageSrc",ele.image)
+
+        const galaxyplanet = document.getElementById("galaxyplanets")
+        galaxyplanet.appendChild(options)
+        console.log(options);
+    })
+    function calculatefunc(){
+        var mass = +document.getElementById("kilos").value
+        const select = document.getElementById("galaxyplanets")
+         var answerbodys = document.getElementById("answerbody")
+        
+        var selectedIndex = select.selectedIndex;
+        const selectedoption = select.options[selectedIndex]
+        console.log(selectedoption);
+        const gravity = +selectedoption.value
+        const weight = mass * gravity
+        console.log(weight);
+        const h1 = document.getElementById("h1")
+        var error = "please enter your mass"
+        if (mass == "") {
+            h1.innerText = error
+            h1.setAttribute("style","justify-content:center,align-items:center")
+        } else if (mass <= 0) {
+            h1.innerText = "plz enter mass greater than 0"
+        } else {
+            h1.innerText =weight.toFixed(2)
+            var imgsrc = selectedoption.getAttribute("imageSrc")
+            const img = document.getElementById("image")
+            img.src = imgsrc
+            img.setAttribute("style","width:400px;height:300px")
+        }
+        console.log(h1);
+        console.log(imgsrc);
+    }
+
+    </script>
+</body>
+</html>

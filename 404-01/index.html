@@ -100,16 +100,20 @@
         const weight = mass * gravity
         console.log(weight);
         const h1 = document.getElementById("h1")
+        let img = document.getElementById("image")
+
         var error = "please enter your mass"
         if (mass == "") {
             h1.innerText = error
+            img.src = "";
+            img.style.display="none";
             h1.setAttribute("style","justify-content:center,align-items:center")
         } else if (mass <= 0) {
             h1.innerText = "plz enter mass greater than 0"
         } else {
             h1.innerText =weight.toFixed(2)
             var imgsrc = selectedoption.getAttribute("imageSrc")
-            const img = document.getElementById("image")
+            
             img.src = imgsrc
             img.setAttribute("style","width:400px;height:300px")
         }

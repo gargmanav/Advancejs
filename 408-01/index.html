@@ -1,0 +1,138 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: 'Poppins', sans-serif;
+        }
+        .main{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #formcontainer{
+         display: flex;
+        }
+        .forma{
+            height: 30px;
+            width: 200px;
+            margin: 5px;
+        }
+        #submit{
+            width: 180px;
+            height: 30px;
+         margin: 5px;
+         font-family: 'Poppins', sans-serif;
+         background-color: #E5C9C5;
+            border: none;
+            color: white;
+
+        }
+        #answer{
+            display: flex;
+            justify-content: space-evenly;
+            width: 80%;
+            align-items: center;
+            flex-direction: column;
+            
+        }
+        #tablerow{
+            background-color: #E5C9C5;
+            display: flex;
+            width: 100%;
+            height: 50px;
+            justify-items: center;
+            justify-content: space-evenly;
+            margin-top: 10px;
+            align-items: center;
+
+        }
+        
+        input{
+            border: 2px solid #E5C9C5 ;
+            font-family: 'Poppins', sans-serif;
+
+        }
+        #indiv{
+            width: 100%;
+        }
+        tbody{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        #tablerow button{
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+        .bt1{
+            margin-left: 0px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="subcontainer">
+            <h1>30 Days of Javascript Challenge LeaderBoard</h1>
+        </div>
+        <form id="formcontainer">
+            <input type="text" class="forma fname"  placeholder="First Name">
+            <input type="text" class="forma lname" placeholder="Last Name">
+            <input type="text" class="forma country" placeholder="Country">
+            <input type="number" class="forma score" placeholder="Score Marks">
+            <button id="submit" onclick="addrow()" type="button">Add Player</button>
+        </form>
+        <div id="answer">
+                <table id="indiv"></table>
+        </div>
+    </div>
+    
+    <script>
+        var counter = 0
+       function addrow(){
+        const fname = document.getElementsByClassName("fname")[0].value
+        const lname = document.getElementsByClassName("lname")[0].value
+        const country = document.getElementsByClassName("country")[0].value
+        var score = document.getElementsByClassName("score")[0].value
+        let answer = document.getElementById("answer")
+        let indiv=document.getElementById("indiv")
+
+        if(fname=="" || lname=="" || country=="" || score==""){
+            indiv.innerHTML = ""
+            indiv.innerHTML = `<div><p>Please fill all the blanks</p></div>`
+        }
+          else{
+            indiv.innerHTML += `
+        <tr id="tablerow">
+            <td id="NameRow">${fname+" " + lname}<br><time datetime="2023-1-23"></td>
+            <td id="countryRow">${country}</td>
+            <td id="scoreRow">${score}</td>
+            <td><button  onclick="deletefunc(this)" class = "bt1">X</button></td>
+            <td><button onclick="plusFive(${counter})" id="plusFive${counter}" class = "bt1">+5</button></td>
+            <td><button class = "bt1">-5</button></td>
+        </tr>
+              `
+             
+          }
+          
+        }
+        function deletefunc(e){
+        e.parentElement.parentElement.remove()
+
+        }
+        function plusFive(counter) {
+    console.log("hello");
+    const score = document.getElementById(`scoreRow${counter}`)
+    score.innerText = +score.innerText+5
+}
+    </script>
+</body>
+</html>

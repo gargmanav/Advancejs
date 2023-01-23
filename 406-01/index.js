@@ -1,11 +1,11 @@
 const numberOfCountries = document.getElementById("numberOfCountries")
-numberOfCountries.innerText = `Total Number of countries are ${countries.length}`
+numberOfCountries.innerText = `Total Number of countries are ${countries_data.length}`
 
 const countriesName = []
-countries.map((ele) => {
-    countriesName.push(ele.name)
+countries_data.map((ele) => {
+    countriesName.push(ele.name.toLowerCase())
 })
-console.log(countriesName);
+
 
 
 function startingSearchFunction() {
@@ -20,6 +20,7 @@ function startingSearchFunction() {
 
     countriesName.map((ele) => {
         const hello = ele.startsWith(input.toLowerCase())
+        // console.log(hello);
         if (input == "") {   
             countryCardContainer.innerHTML = `
                 <div class="card">
@@ -41,11 +42,13 @@ function startingSearchFunction() {
         }
     })
 
+
 }
 
 function searchAnyWordFunction() {
     const countryCardContainer = document.getElementById("countryCardContainer")
     countryCardContainer.innerHTML = ""
+
     const inputElement = document.getElementById("countryNameInput")
     inputElement.setAttribute("onkeyup", "searchAnyWordFunction()")
 
@@ -54,7 +57,7 @@ function searchAnyWordFunction() {
 
     countriesName.map((ele) => {
         const hello = ele.includes(input.toLowerCase())
-        // console.log(hello);
+
         if (input == "") {
             countryCardContainer.innerHTML = `
                 <div class="card">
@@ -75,4 +78,5 @@ function searchAnyWordFunction() {
         }
 
     })
+
 }

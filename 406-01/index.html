@@ -5,11 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
-    <script defer src="countries.js"></script>
+    <script defer src="data.js"></script>
     <script defer src="index.js"></script>
 </head>
 <body>
+    <div class="main">
     <h1>WORLD COUNTRIES LIST</h1>
     <p id="numberOfCountries"></p>
     <p id="numberOfSearchResults"></p>
@@ -18,6 +21,7 @@
         <button id="searchWithAnyWordButton" onclick="searchAnyWordFunction()">Search With Any Word</button>
     </div>
     <input onkeyup="startingSearchFunction()" type="text" name="countryName" id="countryNameInput" placeholder="Search your country !!!">
-    <div id="countryCardContainer" style="display: flex; flex-wrap: wrap; justify-content: center;"></div>
+</div>
+    <div id="countryCardContainer"  style="display: flex; flex-wrap: wrap; justify-content: center;"></div>
 </body>
 </html>

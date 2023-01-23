@@ -61,6 +61,7 @@
         }
         .bt1_01{
          color: red;
+         border: none;
         }
         #indiv{
             width: 100%;
@@ -118,10 +119,10 @@
         <tr id="tablerow">
             <td id="NameRow">${fname+" " + lname}<br><time datetime="2023-1-23"></td>
             <td id="countryRow">${country}</td>
-            <td id="scoreRow">${score}</td>
+            <td id="scoreRow${counter}">${score}</td>
             <td><button  onclick="deletefunc(this)" class = "bt1_01">X</button></td>
             <td><button onclick="plusFive(${counter})" class = "bt1">+5</button></td>
-            <td><button class = "bt1">-5</button></td>
+            <td><button onclick="minusFive(${counter})" class = "bt1">-5</button></td>
         </tr>
               `
              counter = counter + 1;
@@ -133,7 +134,12 @@
 
         }
         function plusFive(counter) {
-    console.log(counter);
+            const score = document.getElementById(`scoreRow${counter}`)
+            score.innerText = +score.innerText+5
+}
+function minusFive(counter) {
+            const score = document.getElementById(`scoreRow${counter}`)
+            score.innerText = +score.innerText-5
 }
     </script>
 </body>

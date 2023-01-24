@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .heading{
+            padding-top: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .inputheading{
+            padding-top:px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .heading h1{
+            font-size: 100px;
+            margin-bottom: -5px;
+        }
+        .heading p{
+            margin-top: -15px;
+        }
+        #input{
+         width: 500px;
+         height: 30px;
+        }
+        #answerbody{
+            display: flex;
+            flex-wrap: nowrap;
+            padding-left: 40px;
+            align-items: center;
+        }
+        #imgs img{
+            width: 300px;
+            height: 300px;
+            padding: 30px;
+            border-radius:50px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+    <div class="heading">
+        <h1>Meal Finder</h1>
+        <p>Find the perfect meal to dine upon.</p>
+        <p>After enter the word please press <span style="color: red;">Enter</span></p>
+    </div>
+    <div class="inputheading">
+        <input type="text" onchange="check()" id="input">
+    </div>
+    <div id="answerbody"></div>
+    </div>
+<script>
+    const input = document.getElementById("input")
+    const answerbody = document.getElementById("answerbody")
+    async function check(){
+        answerbody.innerHTML = ""
+        const inside = input.value
+        const res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inside}`)
+        console.log(res);
+        const data = await res.json()
+        console.log(data);
+            data.meals.map((ele)=>{
+            console.log(ele);
+            const images = ele.strMealThumb
+            console.log(images);
+            answerbody.innerHTML += `<div id = "imgs"><img src=${images}></div>`
+        })
+}
+</script>
+</body>
+</html>

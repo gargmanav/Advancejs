@@ -1,0 +1,88 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <Style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        .heading{
+            display: flex;
+            width: 100%;
+            background-color: darkblue;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            margin-bottom:50px ;
+        }
+        .subheading{
+            display: flex;
+          text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+        .inputheading{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        #input{
+            width: 300px;
+            height: 30px;
+        }
+        #idea{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 20px;
+        }
+        button{
+            height: 30px;
+            width: 80px;
+            background-color: darkblue;
+            color: white;
+        }
+    </Style>
+</head>
+<body>
+        <div class="maincontainer">
+            <div class="heading">
+                <h1>Dictionary</h1>
+            </div>
+            <div class="subheading">
+                <h2>Find any word exist in the world</h2>
+            </div>
+            <div class="inputheading">
+                <input type="text" id="input">
+                <button id="button" onclick="check()">Search</button>
+            </div>
+            <div class="answerbody"></div>
+        </div>
+        <script>
+            const input = document.getElementById("input")
+            const button = document.getElementById("button")
+            const answerbody = document.getElementsByClassName("answerbody")[0]
+        async function check(){
+            const inside = input.value
+            const first = await fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${inside}?key=0386bca9-7411-4e24-b36e-18f10f344072`)
+            const data = await first.json()
+            console.log(data);
+            const des = data[0].shortdef[0]
+            const audio = data[0].audio
+            console.log(audio);
+            answerbody.innerHTML = ""
+            answerbody.innerHTML = `
+            <div id = "idea" ><p>${des}</p></div>`
+        }
+        </script>
+</body>
+</html>

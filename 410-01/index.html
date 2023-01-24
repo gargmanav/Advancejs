@@ -1,0 +1,149 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: 'Poppins', sans-serif;
+            background-color: black;
+        }
+        .ansbody{
+            display: flex;
+            flex-wrap: wrap;
+            width: 90%;
+            justify-content: space-evenly;
+            
+        }
+        .ansbody img{
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+        #innerdiv{
+    width: 260px;
+    height: 73px;
+    display: flex;
+    box-shadow: 1px 1px 14px white;
+    justify-items: stretch;
+    align-items: center;
+    margin: 10px;
+    border-radius: 45px
+        }
+        #img{
+            align-items: center;
+            display: flex;
+            width: 300px;
+            height: 100px;
+            margin-left: 10px;
+        }
+        #heading{
+         color: white;
+         margin-left: 20px;
+         
+        }
+        a{
+            color: white;
+            text-decoration: none;
+        }
+        h3{
+            padding:0%;
+            margin: 0%;
+        }
+        .main{
+            color: white;
+       
+        }
+        #input{
+            height: 37px;
+    width: 319px;
+    padding: 0%;
+    border-top-left-radius: 5px;
+    border: 2px solid gray;
+        }
+        #lastbutton{
+            height: 37px;
+            width: 80px;
+            border-top-right-radius: 5px;
+            background-color: black;
+            border: 2px solid gray;
+            color: white;
+            
+        }
+       .subcontainer{
+        padding-bottom: 50px;
+       }
+    </style>
+</head>
+<body>
+    <div>
+        <h2 style="color: white;">Github Finder</h2>
+    </div>
+    <div class="main">
+        <h1>Lets stalk someone on github</h1>
+    </div>
+    <div class="subcontainer">
+        <input type="text" id="input" >
+        <button onclick="checkafter()" id="lastbutton">Search</button>
+    </div>
+    <div class="ansbody">
+        
+    </div>
+    
+    <script>
+        const input = document.getElementById("input")
+        const ansbody = document.getElementsByClassName("ansbody")[0]
+        async function checkfirst(){
+            const res = await fetch("https://api.github.com/users")
+            const obj = await res.json();
+
+            obj.map((ele)=>{
+                const username = ele.login
+                const avatar = ele.avatar_url
+                 const profile = ele.html_url
+
+                 ansbody.innerHTML += `
+                 <div id ="innerdiv">
+                 <div id="img">
+                     <img src=${avatar}/>
+                 <div id="heading">
+                     <h3>${username}</h3>
+                     <a href=${profile}>view profile</a>
+                </div>
+                </div>
+                </div>
+                 `
+            })
+        }
+        checkfirst();
+        async function checkafter(){
+            const inside = input.value
+            const res = await fetch(`https://api.github.com/search/users?q=${inside}`)
+            const obj = await res.json();
+            console.log(obj);
+            ansbody.innerHTML=""
+
+            obj.items.map((ele)=>{
+                const username = ele.login
+                const avatar = ele.avatar_url
+                 const profile = ele.html_url
+
+                 ansbody.innerHTML += `
+                 <div id ="innerdiv">
+                 <div id="img">
+                     <img src=${avatar}/>
+                 <div id="heading">
+                     <h3>${username}</h3>
+                     <a href=${profile}>view profile</a>
+                </div>
+                </div>
+                </div>
+                 `
+            })
+        }
+    </script>
+</body>
+</html>

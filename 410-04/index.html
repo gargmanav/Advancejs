@@ -1,0 +1,108 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<style>
+    *{font-family: 'Poppins', sans-serif;
+        margin: 0%;
+        padding: 0%;
+    }
+    body{
+        background-color: #5080FE;
+    }
+    .main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .heading{
+        margin-top: 30px;
+        width: 500px;
+        height: 30px;
+        background-color: white;
+        color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #inputing{
+        width: 365px;
+        height: 190px;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+    }
+    button{
+        margin: 20px;
+        background-color: #5080FE;
+        color: white;
+        width: 100px;
+        height: 30px;
+        border: none;
+    }
+    .answerbody{
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        width: 365px;
+        background-color: white;
+    }
+    #searchinput{
+        width: 280px;
+        height: 30px;
+    }
+     .answerbody h3{
+        padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+     }
+</style>
+<body>
+      <div class="main">
+        <div class="heading">
+            <h3>Weather App using Javascript</h3>
+        </div>
+        <div id="inputing">
+            <input type="text" id="searchinput">
+            <button onclick="check()">Submit</button>
+        </div>
+        <div class="answerbody">
+            <h2 id="answerheading" style="display: flex;justify-content: center;align-items: center;background-color: blue;color: white;">weather of location</h3>
+            <h3 id="conditions"></h3>
+            <h3 id="temperature"></h3>
+            <h3 id="windspeed"></h3>
+        </div>
+      </div>
+      <script>
+        const searchinput = document.getElementById("searchinput")
+const answerheading = document.getElementById("answerheading")
+const conditions = document.getElementById("conditions")
+const windspeed = document.getElementById("windspeed")
+const temperature = document.getElementById("temperature")
+
+async function check(){
+    const location = searchinput.value
+    const streamResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=d8ab14f7e93c56cbe84562d28e8202bd&units=metric`);
+    console.log(streamResponse);
+    const data = await streamResponse.json()
+    console.log(data);
+    answerheading.innerText = `weather of ${location}`
+    conditions.innerText = `Sky copndition: ${data.weather[0].description}`
+    temperature.innerText = `temperature: ${data.main.temp}`
+    windspeed.innerText = `windspeed: ${data.wind.speed}`
+}
+      </script>
+</body>
+</html>

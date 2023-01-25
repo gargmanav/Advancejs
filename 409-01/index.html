@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Validation Web Forms</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+	<script type="text/javascript" defer src="index.js"></script>
+	<script type="text/javascript" defer src="user_input_check.js"></script>
+    <style>
+         *{
+	margin:0;
+	padding: 0;
+	box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: bisque;
+
+}
+#main_container{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	height:100%;
+	width:100%;
+}
+h1{
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+label{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-right: 300px;
+}
+input{
+	padding-bottom: 10px;
+	width:30%;
+	height: 30px;
+}
+#get_data{
+	padding-top:10px;
+	padding-bottom:30px;
+	width: 15%;
+	font-size: 18px;
+	margin-top: 20px;
+	color:black;
+	background-color: #c1c0c0;
+	border-radius: 5px;
+	margin-right: 200px;
+    border: none;
+}
+
+    </style>
+</head>
+<body onload="myFunction()">
+	<div id="main_container">
+    <h1>Validating Web Forms</h1>
+        <label>First Name</label>
+		<input type="text" name="fname" id="fname" onkeyup="first_name_check()" style="border-style: none;">
+		<p id="first_alert"></p>
+
+		<label>Last Name</label>
+		<input type="text" name="lname" id="lname" onkeydown="last_name_check()">
+		<p id="last_alert"></p>
+
+		<label>Email</label>
+		<input type="email" name="Email" id="email_address" onkeydown="email_check()">
+		<p id="email_alert"></p>
+
+		<label>Password</label>
+		<input type="password" name="password" id="user_password" onkeydown="password_check()">
+		<p id="password_alert"></p>
+
+		<label>Telephone</label>
+		<input type="number" name="Telephone" id="mobile_no" onkeydown="telephone_check()">
+		<p id="telephone_alert"></p>
+
+		<label>Your bio</label>
+		<input type="text" name="biodata" id="bio_data" onkeydown="yourbio_check()">
+		<p id="bio_alert"></p>
+		<input type="button" value="submit" id="get_data"  onclick="himanshu()">
+		
+	</div>
+    <script>
+        function fetch_data(){
+
+let fname = document.getElementById("fname").value;
+let lname = document.getElementById("fname").value;
+let email = document.getElementById("email_address").value;
+let upass = document.getElementById("user_password").value;
+let mobileno= document.getElementById("mobile_no").value;
+let bio = document.getElementById("bio_data").value;
+//blank input validation
+if(fname == "" || lname == "" || email == "" || upass == "" || mobileno == "" ){
+   document.getElementById("fname").style.border="2px solid red";
+   document.getElementById("lname").style.border="2px solid red";
+   document.getElementById("email_address").style.border="2px solid red";
+   document.getElementById("user_password").style.border="2px solid red";
+   document.getElementById("mobile_no").style.border="2px solid red";
+   // document.getElementById("bio_data").style.border="2px solid red";
+}
+
+
+else{
+
+   //first and last name input validation
+var regName = /^[a-zA-Z]+$/;
+
+if(!regName.test(fname) || (fname.length < 3  && 16 > fname.length))
+{
+  let ans1 = document.getElementById("first_alert");
+  ans1.innerHTML="First name must be Alphanumeric"
+  ans1.style.color="orange";
+  ans1.style.fontsize="18px";
+}
+else{
+    let ans1 = document.getElementById("first_alert");
+    ans1.innerHTML = "";
+    document.getElementById("fname").style.border="2px solid green";
+}
+
+//last name valiation
+
+   var reglame = /^[a-zA-Z]+$/;
+
+if(!reglame.test(lname) || (lname.length < 3  && 16 > lname.length))
+{
+  let ans2 = document.getElementById("last_alert");
+  ans2.innerHTML="Last name must be Alphanumeric"
+  ans1.style.color="orange";
+  ans1.style.fontsize="18px";
+}
+else{
+    let ans2 = document.getElementById("last_alert");
+    ans2.innerHTML="";
+    document.getElementById("lname").style.border="2px solid green";
+}
+
+
+//email validation 
+
+var regemail= /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3}[a-zA-Z\s])+$/;
+if(!regemail.test(email))
+{
+  let ans3 = document.getElementById("email_alert");
+  ans3.innerHTML="Email must be valid address e.g example@example.com"
+  ans3.style.color="orange";
+  ans3.style.fontsize="18px";
+}
+else{
+    let ans3 = document.getElementById("email_alert");
+    ans3.innerHTML = "";
+    document.getElementById("email_address").style.border="2px solid green";
+}
+
+
+//password validation 
+
+var regpass = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+if(!regpass.test(upass))
+{
+  let ans4 = document.getElementById("password_alert");
+  ans4.innerHTML="Password must be Alphanumeric (@, _ and - are also allowed)";
+  ans4.style.color="orange";
+  ans4.style.fontsize="18px";
+
+}
+else{
+    let ans4 = document.getElementById("password_alert");
+    ans4.innerHTML = "";
+    document.getElementById("user_password").style.border="2px solid green";
+}
+
+//telephone validation 
+
+  var regtel = /^(?:\d{2}([-.])\d{3}\1\d{3}\1\d{3}|\d{11})$/;
+  if(!regtel.test(mobileno))
+{
+  let ans5 = document.getElementById("telephone_alert");
+  ans5.innerHTML="A valid Telephone number ( 11 digits and 333-333-3334)";
+  ans5.style.color="orange";
+  ans5.style.fontsize="18px";
+  console.log(ans5);
+}
+else{
+    let ans5 = document.getElementById("telephone_alert");
+    ans5.innerHTML = "";
+    document.getElementById("mobile_no").style.border="2px solid green";
+}
+
+// bio introduction 
+  
+  var regtel = /^(?:\d{2}([-.])\d{3}\1\d{3}\1\d{3}|\d{11})$/;
+  if(!regtel.test(bio))
+{
+  let ans5 = document.getElementById("telephone_alert");
+  ans5.innerHTML="A valid Telephone number ( 11 digits and 333-333-3334)";
+  ans5.style.color="orange";
+  ans5.style.fontsize="18px";
+  console.log(ans5);
+}
+else{
+    let ans5 = document.getElementById("telephone_alert");
+    ans5.innerHTML = "";
+    document.getElementById("mobile_no").style.border="2px solid green";
+}
+
+
+}
+
+}
+
+function myFunction(){
+	let fname = document.getElementById("fname");
+	let ans1 = document.getElementById("first_alert");
+	ans1.innerHTML = "";
+	fname.style.border = "1px solid #c1c0c0";
+	//lastname
+	let lname = document.getElementById("lname");
+	let ans2 = document.getElementById("last_alert");
+	lname.style.border = "1px solid #c1c0c0";
+	ans2.innerHTML = "";
+    //email
+    let email = document.getElementById("email_address");
+	let ans3 = document.getElementById("email_alert");
+	email.style.border = "1px solid #c1c0c0";
+	ans3.innerHTML = "";
+	//password
+	let password = document.getElementById("user_password");
+	let ans4 = document.getElementById("password_alert");
+	password.style.border = "1px solid #c1c0c0";
+	ans4.innerHTML = "";
+	//telephone
+	let tel = document.getElementById("mobile_no");
+	let ans5 = document.getElementById("telephone_alert");
+	tel.style.border = "1px solid #c1c0c0";
+	ans5.innerHTML = "";
+	//bio
+	let bio = document.getElementById("bio_data");
+	let ans6 = document.getElementById("bio_alert");
+	bio.style.border = "1px solid #c1c0c0";
+	ans6.innerHTML = "";
+
+	
+}
+function first_name_check(){
+	  var fname = document.getElementById("fname");
+			if(fname.value==="" || fname.value.length<3 ||fname.value.length>17 || /^[a-zA-Z\-]+$/.test(fname.value)==false){
+				document.getElementById("fname").style.border="2px solid red";
+				let ans1 = document.getElementById("first_alert");
+				ans1.style.color="orange";
+				ans1.innerText="First name must be alphanumeric and contain 3-16 characters";   
+               return false;
+			}
+			else{
+				let ans1 = document.getElementById("first_alert");
+				ans1.innerHTML = "";
+				document.getElementById("fname").style.border="2px solid green";
+				return true;
+			}
+  }
+
+
+function last_name_check(){
+	  let lname = document.getElementById("lname");
+	  if(lname.value==="" || lname.value.length<3 ||lname.value.length>17 || /^[a-zA-Z\-]+$/.test(lname.value)==false){
+		document.getElementById("lname").style.border="2px solid red";
+		let ans2 = document.getElementById("last_alert");
+		ans2.style.color = "orange";
+		ans2.innerText="First name must be alphanumeric and contain 3-16 characters";   
+	    return false;
+	}
+	else{
+		let ans2 = document.getElementById("last_alert");
+		ans2.innerHTML = "";
+		document.getElementById("lname").style.border="2px solid green";
+		return true;
+	}
+}
+
+function email_check(){
+	let email = document.getElementById("email_address");
+	if(email.value==="" ||  /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/.test(email.value)==false){
+		document.getElementById("email_address").style.border="2px solid red";
+		let ans3 = document.getElementById("email_alert");
+		ans3.style.color = "orange";
+		ans3.innerText="Email must be a valid address, e.g. example@example.com";   
+	    return false;
+	}
+	else{
+		let ans3 = document.getElementById("email_alert");
+		ans3.innerHTML = "";
+		document.getElementById("email_address").style.border="2px solid green";
+		return true;
+	}
+}
+
+ function password_check(){
+	let password = document.getElementById("user_password");
+	if(password.value==="" || password.value.length<6 || password.value.length>20 || [/[a-z]/,/[A-Z]/,/\d/,/\W/].filter(function(t){ return t.test(password.value); }).length > 2==false){
+		document.getElementById("user_password").style.border="2px solid red";
+		let ans3 = document.getElementById("password_alert");
+		ans3.style.color = "orange";
+		ans3.innerText="Password must be alphanumeric (@,_and - are also allowed) and between 6-20 characters";   
+	    return false;
+	}
+	else{
+		let ans3 = document.getElementById("password_alert");
+		ans3.innerHTML = "";
+		document.getElementById("user_password").style.border="2px solid green";
+		return true;
+	}
+}
+
+//telephone
+function telephone_check(){
+	let tel = document.getElementById("mobile_no");
+	if(tel.value==="" ||  /^(0|[+91]{3})?[6-9][0-9]{9}$/.test(tel.value)==false){
+		document.getElementById("mobile_no").style.border="2px solid red";
+		let ans3 = document.getElementById("telephone_alert");
+		ans3.style.color = "orange";
+		ans3.innerText="A valid Telephone number(11 digits and 333-333-3334)";   
+	    return false;
+	}
+	else{
+		let ans3 = document.getElementById("telephone_alert");
+		ans3.innerHTML = "";
+		document.getElementById("mobile_no").style.border="2px solid green";
+		return true;
+	}
+}
+
+//Your Bio
+function yourbio_check(){
+	let bio = document.getElementById("bio_data");
+	if(bio.value==="" ||  /^[a-z0-9\_]+$/.test(bio.value)==false){
+		document.getElementById("bio_data").style.border="2px solid red";
+		let ans3 = document.getElementById("bio_alert");
+		ans3.style.color = "orange";
+		ans3.innerText="Bio must contain only lowercase letters, underscores, hyphens and be 8-50 characters";   
+	    return false;
+	}
+	else{
+		let ans3 = document.getElementById("bio_alert");
+		ans3.innerHTML = "";
+		document.getElementById("bio_data").style.border="2px solid green";
+		return true;
+	}
+}
+function himanshu() { 
+	if(first_name_check() && last_name_check() && email_check() && password_check() && telephone_check() && yourbio_check())alert("Your form is submitted");
+}
+
+    </script>
+</body>
+</html>

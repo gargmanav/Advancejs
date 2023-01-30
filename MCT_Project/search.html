@@ -1,0 +1,228 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 10px;
+        }
+        body {
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background: linear-gradient(
+      to right, 
+      #1E1E32, #38496E) fixed;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.heads{
+    color: #eaedff;
+}
+.inputs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.unorder{
+    list-style: none;
+    color: white;
+    
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+#catagory{
+    height: 35px;
+    width: 100px;
+    height: 35px;
+    width: 100px;
+    margin-right: -16px;
+    text-align: center;
+    background-color: gray;
+    color: white;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+#searchbar{
+    height: 35px;
+    width: 300px;
+}
+#btn1{
+    height: 35px;
+    width: 100px;
+    margin-left: -17px;
+    background-color: gray;
+    color: white;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#moviegrid{
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.tittle{
+    color: white;
+}
+a{
+  text-decoration: none;
+  color: gray;
+}
+.cardi{
+    margin: 20px;
+    width: 200px;
+    height: 350px;
+}
+.cardi:hover {
+  transform: scale(1.1);
+  transition: transform 0.4s ease;
+}
+.yearlaunch{
+    color: gray;
+    margin-left: 20px;
+}.imgs img{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+    </style>
+</head>
+<body>
+    <div id="main">
+        <Header>
+            <div class="header">
+                <div class="myhead">
+                    <h1 class="heads">The Movie Search</h1>
+                </div>
+                <div class="topleftlist">
+                    <ul class="unorder">
+                        <li id="home"><a href="./index.html">HOME</a></li>
+                    </ul>
+                </div>
+            </div>
+        </Header>
+                <div class="inputs">
+                    <form action="" id="form">
+                        <select name="" id="catagory">
+                            <option value="movie" id="movie">Movie</option>
+                            <option value="series" id="series">Series</option>
+                        </select>
+                        <input type="text" id="searchbar" />
+                        <button id="btn1" onclick="movies()">Search</button>
+                    </form>
+                </div>
+                <div id="moviegrid"></div>
+            </div>
+        
+        <!-- ///////////mainbody////////////////////////////////////////////////////////// -->
+        <script>
+            const input= document.getElementById("searchbar")
+const cards= document.getElementById("moviegrid")
+const form= document.getElementById("form").addEventListener('submit' , (e)=>{
+    e.preventDefault()
+})
+
+const searchselect=document.getElementById("catagory")
+let selectvalue = searchselect.value
+
+const moviedropdown= document.getElementById("movie")
+const seriesdropdown= document.getElementById("series")
+
+
+searchselect.addEventListener('change',(ele)=>{
+    selectvalue= searchselect.value
+    console.log(selectvalue) 
+    if(selectvalue =='movie'){
+        console.log("movie",selectvalue)
+       moviedropdown.addEventListener('change',findmovie(selectvalue)) 
+    }
+    else if(selectvalue =='series'){
+        console.log("series",selectvalue)
+       seriesdropdown.addEventListener('change',findtv(selectvalue)) 
+    }
+   
+
+})
+
+    function movies(){
+        console.log("click",selectvalue)
+        if(selectvalue=='movie'){
+            findmovie(selectvalue)
+        }
+       else{
+        findtv(selectvalue)
+       }
+    
+    }
+
+
+
+
+async function  findmovie(selectvalue){
+    console.log( "func",selectvalue) 
+    cards.innerHTML=""
+    let inputvalue=input.value
+    console.log(inputvalue)
+    const res= await fetch(`https://api.themoviedb.org/3/search/${selectvalue}?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query=${inputvalue}`)
+    console.log(res)
+
+    const data= await res.json()
+    console.log(data.results);
+    data.results.map((ele)=>{
+        const imago = ele.poster_path;
+    const title = ele.title;
+     const year = ele.release_date.substring(0,4);
+ 
+                           cards.innerHTML += ` <div class="cardi"><div class="imgs"><img src="https://image.tmdb.org/t/p/w154${imago}" alt="image thi yaha"></div>
+                    <div class="tittle"><h4>${title}</h4></div>
+                    <div class="yearlaunch">${year}</div>
+                </div> `;
+    
+
+       
+
+     })
+
+}
+
+
+async function  findtv(selectvalue){
+    console.log( "func",selectvalue) 
+    cards.innerHTML=""
+    let inputvalue=input.value
+    console.log(inputvalue)
+    const res= await fetch(`https://api.themoviedb.org/3/search/${selectvalue}?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query=${inputvalue}`)
+    console.log(res)
+
+    const data= await res.json()
+    console.log(data.results);
+    data.results.map((ele)=>{
+        const imago = ele.poster_path;
+    const title = ele.name;
+     const year = ele.first_air_date.substring(0,4);
+                            
+                           cards.innerHTML += ` <div class="cardi"><div class="imgs"><img src="https://image.tmdb.org/t/p/w154${imago}" alt="image thi yaha"></div>
+                    <div class="tittle"><h4>${title}</h4></div>
+                    <div class="yearlaunch">${year}</div>
+                </div> `
+    
+
+       
+
+     })
+
+}
+        </script>
+</body>
+</html>

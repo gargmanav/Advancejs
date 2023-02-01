@@ -1,10 +1,11 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script type="text/javascript" src="index.js" defer></script>
+<style>
         *{
             margin: 10px;
         }
@@ -49,7 +50,6 @@
 }
 
 .btn-group {
-    background: #dfdfdf;
     border-radius: 3px;
     position: relative;
     width: fit-content;
@@ -78,7 +78,7 @@
     content: attr(label);
     text-align: center;
   }
-.moviegrid{
+#moviegrid{
     height: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -111,129 +111,233 @@ a{
   background-color: #F6F7FF;
   font-size: 15px;
 }
-    </style>
+.seriesbtn
+{ background-color: #eaedff;
+    color: rgb(59,65,91); 
+   font-size: 15px;
+  font-weight: 700;
+  margin-left: -15px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 75px;
+    height: 35px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+
+    
+}
+.seriesbtn:focus
+{ font-size: 15px;
+  border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  font-weight: 700;
+  margin-left: -15px; 
+   background-color: black;
+  color: white;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+   
+}
+.moviebtn
+{  font-size: 15px;
+  font-weight: 700;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 75px;
+    height: 35px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+.moviebtn:focus
+{ font-size: 15px;
+  font-weight: 700;
+   background-color: black;
+  color: white;
+  width: 75px;
+    height: 35px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+   
+}
+.buttonselect
+{
+    background-color:#eaedff ;
+    color:rgb(59,65,91) ;
+
+}
+</style>
 </head>
 <body>
-    <div id="main">
-        <Header>
-            <div class="header">
-                <div class="myhead">
-                    <h1 class="heads">The Movie Search</h1>
-                </div>
-                <div class="topleftlist">
-                    <ul class="unorder">
-                        <li class="home">HOME</li>
-                        <li class="search" onclick="searchoption()" style="cursor: pointer;"><a href="./search.html">SEARCH</a></li>
-                    </ul>
-                </div>
-            </div>
-        </Header>
-        <!-- ///////////mainbody////////////////////////////////////////////////////////// -->
-        <div class="homepage" >
-        <div class="section">
-            <div class="popularsection">
-                <h1>Popular</h1>
-                <select id="selection" onchange="hello()">
-                    <option value="day">Today</option>
-                    <option value="week">This week</option>
-                </select>
-                <div class="btn-group" id="beti">
-                    <input label="MOVIES" type="radio" name="btn" id="movie" value="male" checked onclick="up()">
-                    <input label="SERIES" type="radio" name="btn" id="series" value="female" onclick="down()">
-                </div>
-            </div>
-            <hr style="border:1px solid gray;">
-            <!-- /////////////////////////moviesgrid/////////////////////////////// -->
-            <div class="moviegrid">
+  <div class="main">
+    <Header>
+      <div class="header">
+          <div class="myhead">
+              <h1 class="heads">The Movie Search</h1>
+          </div>
+          <div class="topleftlist">
+              <ul class="unorder">
+                  <li class="home">HOME</li>
+                  <li class="search" onclick="searchoption()" style="cursor: pointer;"><a href="./search.html">SEARCH</a></li>
+              </ul>
+          </div>
+      </div>
+  </Header>
 
+  <!-- //////mainbody/////////////////// -->
+  <div class="homepage" >
+    <div class="section">
+        <div class="popularsection">
+            <h1>Popular</h1>
+            <select id="selection" onchange="today_movie()">
+              <option id="tdy" value="today">Today</option>
+              <option id="wek" value="week">This week</option>
+              </select>
+            <div class="btn-group" id="beti">
+                <!-- <input label="MOVIES" type="radio" name="btn" id="movie" value="male" checked onclick="up()">
+                <input label="SERIES" type="radio" name="btn" id="series" value="female" onclick="down()"> -->
+                <button id="movie" class="moviebtn buttonselect"  onclick="movies_list()">Movies</button>
+                <button id="series" class="seriesbtn" onclick="series_list()">Series</button>
             </div>
         </div>
+        <hr style="border:1px solid gray;">
+        <!-- /////////////////////////moviesgrid/////////////////////////////// -->
+        <div id="moviegrid">
+
         </div>
     </div>
+    </div>
+  </div>
+    <!-- <h3>populor</h3>
+    <select id="selection" onchange="today_movie()">
+    <option id="tdy" value="today">Today</option>
+    <option id="wek" value="week">This week</option>
+    </select>
+    <div>
+      <button id="movies" onclick="movies_list()">Movies</button>
+      <button id="series" onclick="series_list()">Series</button>
+    </div>
+    <div id="moviegrid" style="display: flex;flex-wrap: wrap;margin:50px;">
+     -->
+      <!-- </div>
+  </div> -->
    
     <script>
-        const selection = document.getElementById("selection")
-        let card = document.getElementsByClassName("moviegrid")[0]
-        const movie = document.getElementById("movie")
-        const series = document.getElementById("series")
-        const homepage = document.getElementsByClassName("homepage")[0]
-        
+  async function today_movie()
+{
+	moviegrid.innerHTML = "";
+	var e = document.getElementById("selection");
+	if(e.value == "week" ){
 
-        selection.addEventListener('change', function handleChange(event) {
-        console.log(event.target.value);
-});
-      const lastselect = selection.options[selection.selectedIndex].value;
-let day = "day";
-      function hello() {
-  day = selection.value;
-  if (movie.checked == true && day == "week") {
-    // console.log(day);
-    movie.addEventListener("change", moviecheck(day));
-    day = selection.value;
-  } else if (movie.checked == true && day == "day") {
-    movie.addEventListener("change", moviecheck(day));
-    day = selection.value;
-  } else if (movie.checked == false && day == "week") {
-    movie.addEventListener("change", seriescheck(day));
-    day = selection.value;
-  } else if (series.checked == true && day == "day") {
-    movie.addEventListener("change", seriescheck(day));
-    day = selection.value;
-  }
-}
-function up() {
-  moviecheck(day);
-}
-function down() {
-  seriescheck(day);
-}
-
-async function moviecheck(e) {
-  card.innerHTML = ``;
-  const res = await fetch(
-    `https://api.themoviedb.org/3/trending/movie/${e}?api_key=3fd2be6f0c70a2a598f084ddfb75487c`
-  );
-  const data = await res.json();
-  console.log(data);
-  data.results.map((e) => {
-    const imago = e.poster_path;
-    const title = e.title;
-     const year = e.release_date.substring(0,4);
- 
-                           card.innerHTML += ` <div class="cards"><div class="imgs"><img src="https://image.tmdb.org/t/p/w154${imago}" alt=""></div>
+		const movie_day = await fetch("https://api.themoviedb.org/3/trending/movie/week?&api_key=122f0c50ae02fa84601c07025cb6d2f1");
+    console.log(movie_day);
+    const movie_today = await movie_day.json();
+    console.log(movie_today);
+    movie_today.results.map((ele)=>{
+    	const imago = ele.poster_path;
+      const title = ele.title;
+      const year = ele.release_date.substring(0,4);
+        moviegrid.innerHTML += ` <div class="cards"><div class="imgs"><img src="https://image.tmdb.org/t/p/w154${imago}" alt=""></div>
                     <div class="tittle"><h4>${title}</h4></div>
                     <div class="yearlaunch">${year}</div>
-                </div> `;
+                </div> `
+      
+    })
+   // return true;
 
-//     card.innerHTML += `
-//     <div class="cards">
-//     <img src="https://image.tmdb.org/t/p/w154${e.poster_path}" alt="">
-//     <div><h2>${e.title}</h2>
-//     <p>Genere</p>
-//     <h3>${e.release_date}</h3></div>
-//     </div>
-// </div>
-//       `;
-  });
+	}
+	else if(e.value == "today")
+	{
+		moviegrid.innerHTML = "";
+		const movie_day = await fetch("https://api.themoviedb.org/3/trending/movie/day?&api_key=122f0c50ae02fa84601c07025cb6d2f1");
+    const movie_today = await movie_day.json();
+    movie_today.results.map((ele)=>{
+    	const imago = ele.poster_path;
+      const title = ele.title;
+      const year = ele.release_date.substring(0,4);
+        moviegrid.innerHTML += ` <div class="cards"><div class="imgs"><img src="https://image.tmdb.org/t/p/w154${imago}" alt=""></div>
+                    <div class="tittle"><h4>${title}</h4></div>
+                    <div class="yearlaunch">${year}</div>
+                </div> `
+	});
+	moviegrid.innerHTML == "";
+	return true;
+  } 
 }
-async function seriescheck(geta) {
-  card.innerHTML = ``;
-  const res = await fetch(
-    `https://api.themoviedb.org/3/trending/tv/${geta}?api_key=05115a04b06d974d0210b99b0228bd44`
-  );
-  const data = await res.json();
-  data.results.map((e) => {
-    const imago = e.poster_path;
-    const title = e.name;
-     const year = e.first_air_date.substring(0,4);
+today_movie()
+
+async function movies_list(){
+	var e = document.getElementById("selection");
+	if(e.value == "week"){
+        moviegrid.innerHTML = "";
+		const movie_day = await fetch(" https://api.themoviedb.org/3/trending/movie/week?&api_key=122f0c50ae02fa84601c07025cb6d2f1");
+    console.log(movie_day);
+    const movie_today = await movie_day.json();
+    console.log(movie_today);
+    movie_today.results.map((ele)=>{
+    	const imago = ele.poster_path;
+    const title = ele.name;
+     const year = ele.release_date.substring(0,4);
                             
-                           card.innerHTML += ` <div class="cards"><div class="imgs"><img src="https://image.tmdb.org/t/p/w154${imago}" alt=""></div>
+                           moviegrid.innerHTML += ` <div class="cards"><div class="imgs"><img src="https://image.tmdb.org/t/p/w154${imago}" alt=""></div>
                     <div class="tittle"><h4>${title}</h4></div>
                     <div class="yearlaunch">${year}</div>
                 </div> `;
-  });
+    });
+  }
+    //===============================================
+    else if(e.value == "today"){
+     moviegrid.innerHTML = "";
+		const movie_day = await fetch("https://api.themoviedb.org/3/trending/movie/day?&api_key=122f0c50ae02fa84601c07025cb6d2f1");
+    const movie_today = await movie_day.json();
+    movie_today.results.map((ele)=>{
+    	const imago = ele.poster_path;
+      const title = ele.title;
+      const year = ele.release_date.substring(0,4);
+        moviegrid.innerHTML += ` <div class="cards"><div class="imgs"><img src="https://image.tmdb.org/t/p/w154${imago}" alt=""></div>
+                    <div class="tittle"><h4>${title}</h4></div>
+                    <div class="yearlaunch">${year}</div>
+                </div> `
+	});
+    }
 }
-moviecheck("day");
+async function series_list(){
+	var e = document.getElementById("selection");
+	if(e.value == "week"){
+        moviegrid.innerHTML = "";
+		const movie_day = await fetch("https://api.themoviedb.org/3/trending/tv/week?&api_key=122f0c50ae02fa84601c07025cb6d2f1");
+    console.log(movie_day);
+    const movie_today = await movie_day.json();
+    console.log(movie_today);
+    movie_today.results.map((ele)=>{
+    	const imago = ele.poster_path;
+    const title = ele.name;
+     const year = ele.first_air_date.substring(0,4);
+                            
+                           moviegrid.innerHTML += ` <div class="cards"><div class="imgs"><img src="https://image.tmdb.org/t/p/w154${imago}" alt=""></div>
+                    <div class="tittle"><h4>${title}</h4></div>
+                    <div class="yearlaunch">${year}</div>
+                </div> `;
+    });
+  }
+    //===============================================
+    else if(e.value == "today"){
+     moviegrid.innerHTML = "";
+		const movie_day = await fetch("https://api.themoviedb.org/3/trending/tv/day?&api_key=122f0c50ae02fa84601c07025cb6d2f1");
+    console.log(movie_day);
+    const movie_today = await movie_day.json();
+    console.log(movie_today);
+    movie_today.results.map((ele)=>{
+    	const imago = ele.poster_path;
+    const title = ele.name;
+     const year = ele.first_air_date.substring(0,4);
+
+                            
+                           moviegrid.innerHTML += ` <div class="cards"><div class="imgs"><img src="https://image.tmdb.org/t/p/w154${imago}" alt=""></div>
+                    <div class="tittle"><h4>${title}</h4></div>
+                    <div class="yearlaunch">${year}</div>
+                </div> `;
+	});
+    }
+
+
+	}
+
     </script>
 </body>
 </html>
